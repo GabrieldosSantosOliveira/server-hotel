@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model User {
+  id            String        @id
+  email         String        @unique
+  googleId      String?       @unique
+  appleId       String?       @unique
+  facebookId    String?       @unique
+  givenName     String
+  familyName    String
+  password      String?
+  birthDate     DateTime?
+  gender        Gender?
+  phoneNumber   String?
+  countryCode   String?
+  verifiedEmail Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  address       Address[]
+  reservation   Reservation[]
+  Still         Still[]
+  Image         Image[]
+  Card          Card[]
+}
+
+model Address {
+  id             String   @id
+  numberOfStill  String
+  street         String
+  complement     String
+  referencePoint String
+  city           String
+  state          String
+  zipCode        String
+  district       String
+  country        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  userId         String
+  User           User     @relation(fields: [userId], references: [id])
+}
+
+model Facilities {
+  id        String   @id
+  title     String   @unique
+  stillId   String
+  Still     Still    @relation(fields: [stillId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Still {
+  id          String        @id
+  title       String
+  price       Int
+  type        String
+  size        Int
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  ownerId     String
+  Owner       User          @relation(fields: [ownerId], references: [id])
+  facilities  Facilities[]
+  Image       Image[]
+  reservation Reservation[]
+}
+
+model Image {
+  id        String   @id
+  url       String
+  key       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stillId   String?
+  Still     Still?   @relation(fields: [stillId], references: [id])
+  userId    String?
+  User      User?    @relation(fields: [userId], references: [id])
+}
+
+model Reservation {
+  id         String   @id
+  startDate  String
+  endDate    String
+  canceledAt String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  stillId    String
+  Still      Still    @relation(fields: [stillId], references: [id])
+  userId     String
+  User       User     @relation(fields: [userId], references: [id])
+}
+
+model Card {
+  id         String   @id
+  cardName   String
+  cardNumber String
+  expiryDate String
+  cvv        String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  userId     String
+  User       User     @relation(fields: [userId], references: [id])
+}
