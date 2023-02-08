@@ -1,6 +1,6 @@
-import { Email } from './Email';
-import { Providers } from './Providers';
-import { User, PropsConstructor } from './User';
+import { Email } from './email';
+import { Providers } from './providers';
+import { User, PropsConstructor } from './user';
 
 const makeSut = (rest?: Partial<PropsConstructor>) =>
   new User({

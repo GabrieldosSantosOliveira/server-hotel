@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { InvalidParam } from '../helpers/Invalid-param';
+import { InvalidParam } from '../helpers/invalid-param';
 
 interface EmailProps {
   email: string;
