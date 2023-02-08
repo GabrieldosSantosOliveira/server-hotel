@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { Email } from './Email';
-import { Providers } from './Providers';
+import { Email } from './email';
+import { Providers } from './providers';
 export interface UserProps {
   id: string;
   providers: Providers;
@@ -9,11 +9,16 @@ export interface UserProps {
   familyName: string;
   password?: string;
   birthDate?: Date;
+  isCompleteRegister?: boolean;
   gender?: 'MALE' | 'FEMALE' | 'OTHER';
   phoneNumber?: string;
   countryCode?: string;
   email: Email;
   verifiedEmail: boolean;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
+  validEmailToken?: string;
+  validEmailExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -26,12 +31,16 @@ export interface PropsConstructor
 export class User {
   private props: UserProps;
 
-  constructor(props: PropsConstructor, id?: string) {
+  constructor(
+    { isCompleteRegister = true, ...rest }: PropsConstructor,
+    id?: string,
+  ) {
     this.props = {
-      ...props,
+      ...rest,
+      isCompleteRegister,
       id: id || randomUUID(),
-      createdAt: props.createdAt || new Date(),
-      updatedAt: props.updatedAt || new Date(),
+      createdAt: rest.createdAt || new Date(),
+      updatedAt: rest.updatedAt || new Date(),
     };
   }
 
@@ -117,5 +126,35 @@ export class User {
   }
   public set updatedAt(updatedAt: Date) {
     this.props.updatedAt = updatedAt;
+  }
+  public set isCompleteRegister(isCompleteRegister: boolean) {
+    this.props.isCompleteRegister = isCompleteRegister;
+  }
+  public get isCompleteRegister(): boolean {
+    return this.props.isCompleteRegister;
+  }
+  public get resetPasswordToken(): string | undefined {
+    return this.props.resetPasswordToken;
+  }
+  public set resetPasswordToken(resetPasswordToken: string) {
+    this.props.resetPasswordToken = resetPasswordToken;
+  }
+  public get resetPasswordExpires(): Date | undefined {
+    return this.props.resetPasswordExpires;
+  }
+  public set resetPasswordExpires(resetPasswordExpires: Date) {
+    this.props.resetPasswordExpires = resetPasswordExpires;
+  }
+  public get validEmailToken(): string | undefined {
+    return this.props.validEmailToken;
+  }
+  public set validEmailToken(validEmailToken: string) {
+    this.props.validEmailToken = validEmailToken;
+  }
+  public get validEmailExpires(): Date | undefined {
+    return this.props.validEmailExpires;
+  }
+  public set validEmailExpires(validEmailExpires: Date) {
+    this.props.validEmailExpires = validEmailExpires;
   }
 }
