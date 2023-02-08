@@ -1,7 +1,7 @@
+import { Email } from '@application/entities/Email';
+import { Providers } from '@application/entities/Providers';
+import { User } from '@application/entities/User';
 import { User as RawUser } from '@prisma/client';
-import { Email } from 'src/application/entities/Email';
-import { Providers } from 'src/application/entities/Providers';
-import { User } from 'src/application/entities/User';
 export class PrismaUserMapper {
   static toPrisma(user: User): RawUser {
     return {
@@ -20,6 +20,11 @@ export class PrismaUserMapper {
       gender: user.gender,
       phoneNumber: user.phoneNumber,
       verifiedEmail: user.verifiedEmail,
+      isCompleteRegister: user.isCompleteRegister,
+      resetPasswordExpires: user.resetPasswordExpires,
+      resetPasswordToken: user.resetPasswordToken,
+      validEmailExpires: user.validEmailExpires,
+      validEmailToken: user.validEmailToken,
     };
   }
   static toDomain(raw: RawUser): User {
@@ -41,6 +46,11 @@ export class PrismaUserMapper {
         }),
         verifiedEmail: raw.verifiedEmail,
         gender: raw.gender,
+        isCompleteRegister: raw.isCompleteRegister,
+        resetPasswordExpires: raw.resetPasswordExpires,
+        resetPasswordToken: raw.resetPasswordToken,
+        validEmailExpires: raw.validEmailExpires,
+        validEmailToken: raw.validEmailToken,
       },
       raw.id,
     );

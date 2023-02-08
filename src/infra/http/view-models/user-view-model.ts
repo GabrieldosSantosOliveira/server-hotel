@@ -1,4 +1,4 @@
-import { User } from 'src/application/entities/User';
+import { User } from '@application/entities/User';
 
 export class UserViewModel {
   static toHTTP(user: User) {
@@ -16,8 +16,8 @@ export class UserViewModel {
       facebookId: user.facebookId,
       appleId: user.appleId,
       updatedAt: user.updatedAt,
-      password: user.password,
       gender: user.gender,
+      isCompleteRegister: user.isCompleteRegister,
     };
   }
 }
