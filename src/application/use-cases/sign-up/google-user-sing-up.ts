@@ -31,7 +31,7 @@ export class GoogleUserSingUp {
         googleId: googleUser.id,
       });
       if (userExists) {
-        return this.authService.generateToken(userExists);
+        return this.authService.generateAccessTokenAndRefreshToken(userExists);
       }
       const userDomain = new User({
         email: Email.create(googleUser.email),
@@ -44,7 +44,7 @@ export class GoogleUserSingUp {
         isCompleteRegister: true,
       });
       await this.userRepository.create(userDomain);
-      return this.authService.generateToken(userDomain);
+      return this.authService.generateAccessTokenAndRefreshToken(userDomain);
     } catch (e) {
       throw new UnauthorizedException('Invalid token');
     }
