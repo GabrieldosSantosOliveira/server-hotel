@@ -6,7 +6,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 export class VerifyEmailController {
   constructor(private readonly validateEmail: VerifyEmail) {}
 
-  @Post('validate-email')
+  @Post('verify-email')
   async execute(@Body() { email, token }: VerifyEmailBodyDto) {
     return await this.validateEmail.execute({ email, token });
   }
