@@ -33,8 +33,8 @@ model User {
   verifiedEmail        Boolean       @default(false)
   createdAt            DateTime      @default(now())
   updatedAt            DateTime      @updatedAt
-  resetPasswordToken   String?
-  resetPasswordExpires DateTime?
+  passwordResetToken   String?
+  passwordResetExpires DateTime?
   validEmailToken      String?
   validEmailExpires    DateTime?
   address              Address[]

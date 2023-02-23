@@ -15,8 +15,8 @@ export interface UserProps {
   countryCode?: string;
   email: Email;
   verifiedEmail: boolean;
-  resetPasswordToken?: string;
-  resetPasswordExpires?: Date;
+  passwordResetToken?: string;
+  passwordResetExpires?: Date;
   validEmailToken?: string;
   validEmailExpires?: Date;
   createdAt: Date;
@@ -133,17 +133,17 @@ export class User {
   public get isCompleteRegister(): boolean {
     return this.props.isCompleteRegister;
   }
-  public get resetPasswordToken(): string | undefined {
-    return this.props.resetPasswordToken;
+  public get passwordResetToken(): string | undefined {
+    return this.props.passwordResetToken;
   }
-  public set resetPasswordToken(resetPasswordToken: string) {
-    this.props.resetPasswordToken = resetPasswordToken;
+  public set passwordResetToken(passwordResetToken: string) {
+    this.props.passwordResetToken = passwordResetToken;
   }
-  public get resetPasswordExpires(): Date | undefined {
-    return this.props.resetPasswordExpires;
+  public get passwordResetExpires(): Date | undefined {
+    return this.props.passwordResetExpires;
   }
-  public set resetPasswordExpires(resetPasswordExpires: Date) {
-    this.props.resetPasswordExpires = resetPasswordExpires;
+  public set passwordResetExpires(passwordResetExpires: Date) {
+    this.props.passwordResetExpires = passwordResetExpires;
   }
   public get validEmailToken(): string | undefined {
     return this.props.validEmailToken;

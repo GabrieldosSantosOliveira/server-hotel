@@ -21,10 +21,10 @@ export class PrismaUserMapper {
       phoneNumber: user.phoneNumber,
       verifiedEmail: user.verifiedEmail,
       isCompleteRegister: user.isCompleteRegister,
-      resetPasswordExpires: user.resetPasswordExpires,
-      resetPasswordToken: user.resetPasswordToken,
       validEmailExpires: user.validEmailExpires,
       validEmailToken: user.validEmailToken,
+      passwordResetExpires: user.passwordResetExpires,
+      passwordResetToken: user.passwordResetToken,
     };
   }
   static toDomain(raw: RawUser): User {
@@ -47,10 +47,10 @@ export class PrismaUserMapper {
         verifiedEmail: raw.verifiedEmail,
         gender: raw.gender,
         isCompleteRegister: raw.isCompleteRegister,
-        resetPasswordExpires: raw.resetPasswordExpires,
-        resetPasswordToken: raw.resetPasswordToken,
         validEmailExpires: raw.validEmailExpires,
         validEmailToken: raw.validEmailToken,
+        passwordResetExpires: raw.passwordResetExpires,
+        passwordResetToken: raw.passwordResetToken,
       },
       raw.id,
     );

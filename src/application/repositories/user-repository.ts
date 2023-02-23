@@ -6,10 +6,10 @@ export interface UserByEmailAndGoogleId {
 
 export abstract class UserRepository {
   abstract create(user: User): Promise<void>;
-  abstract findByEmail(email: string): Promise<User | null>;
-  abstract findById(id: string): Promise<User | null>;
+  abstract findByEmail(email: string): Promise<User | null | undefined>;
+  abstract findById(id: string): Promise<User | null | undefined>;
   abstract findByEmailAndGoogleId(
     data: UserByEmailAndGoogleId,
-  ): Promise<User | null>;
+  ): Promise<User | null | undefined>;
   abstract save(data: User): Promise<void>;
 }

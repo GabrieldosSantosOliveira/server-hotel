@@ -1,5 +1,7 @@
 import { IMailProvider } from '@application/repositories/mail-repository';
+import { ForgotPasswordUseCase } from '@application/use-cases/auth/forgot-password-use-case';
 import { RefreshTokenUseCase } from '@application/use-cases/auth/refresh-token';
+import { ResetPasswordUseCase } from '@application/use-cases/auth/reset-password-use-case';
 import { ValidateEmailUseCase } from '@application/use-cases/auth/validate-email';
 import { CompleteSingUpWithEmail } from '@application/use-cases/sign-up/complete-sing-up-with-email';
 import { EmailUserSingUp } from '@application/use-cases/sign-up/email-user-sing-up';
@@ -12,7 +14,9 @@ import { HttpModule as HttpModuleAxios } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 
 import { DatabaseModule } from '../database/database.module';
+import { ForgotPasswordController } from './controllers/auth/forgot-password.controller';
 import { RefreshTokenController } from './controllers/auth/refresh-token.controller';
+import { ResetPasswordController } from './controllers/auth/reset-password.controller';
 import { ValidateEmailController } from './controllers/auth/validate-email.controller';
 import { SingUpWithEmailAndPasswordController } from './controllers/sing-in/sing-in-with-email-and-password.controller';
 import { CompleteSingUpWithEmailController } from './controllers/sing-up/complete-sing-up-with-email.controller';
@@ -30,6 +34,8 @@ import { GetProfileUserController } from './controllers/user/get-profile-user.co
     GetProfileUserController,
     RefreshTokenController,
     SingUpWithEmailAndPasswordController,
+    ForgotPasswordController,
+    ResetPasswordController,
   ],
   providers: [
     GoogleUserSingUp,
@@ -55,6 +61,8 @@ import { GetProfileUserController } from './controllers/user/get-profile-user.co
     GetProfileUserUseCase,
     RefreshTokenUseCase,
     SingInWithEmailAndPasswordUseCase,
+    ForgotPasswordUseCase,
+    ResetPasswordUseCase,
   ],
   exports: [],
 })

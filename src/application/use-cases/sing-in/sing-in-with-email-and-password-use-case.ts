@@ -21,7 +21,6 @@ export class SingInWithEmailAndPasswordUseCase {
       password,
       passwordHash: userExist.password,
     });
-    console.log(!isValidPassword);
     if (!isValidPassword) {
       throw new UnauthorizedException('Invalid password or email');
     }
