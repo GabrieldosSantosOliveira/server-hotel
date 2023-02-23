@@ -13,7 +13,7 @@ type RequestValidateEmail = {
   token: string;
 };
 @Injectable()
-export class ValidateEmailUseCase {
+export class VerifyEmail {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly mailProvider: IMailProvider,

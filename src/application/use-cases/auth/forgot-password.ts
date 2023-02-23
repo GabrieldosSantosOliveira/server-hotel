@@ -7,7 +7,7 @@ interface Request {
   email: string;
 }
 @Injectable()
-export class ForgotPasswordUseCase {
+export class ForgotPassword {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly mailProvider: IMailProvider,

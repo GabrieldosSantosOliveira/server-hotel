@@ -12,7 +12,7 @@ interface Request {
   passwordReset: string;
 }
 @Injectable()
-export class ResetPasswordUseCase {
+export class ResetPassword {
   constructor(private readonly userRepository: UserRepository) {}
   async execute({ email, passwordReset, token }: Request) {
     const user = await this.userRepository.findByEmail(email);

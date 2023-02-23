@@ -6,7 +6,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class CreateUserBodyWithEmail {
+export class CreateUserWithEmailBodyDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;

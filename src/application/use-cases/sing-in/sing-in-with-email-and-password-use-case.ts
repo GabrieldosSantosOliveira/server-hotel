@@ -7,7 +7,7 @@ interface Request {
   password: string;
 }
 @Injectable()
-export class SingInWithEmailAndPasswordUseCase {
+export class SingInWithEmailAndPassword {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly authService: AuthService,

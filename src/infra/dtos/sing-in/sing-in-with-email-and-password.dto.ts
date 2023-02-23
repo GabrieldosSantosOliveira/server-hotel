@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, Matches } from 'class-validator';
 
-export class SingUpWithEmailAndPasswordDto {
+export class SingUpWithEmailAndPasswordBodyDto {
   @IsNotEmpty()
   @IsString()
   email: string;

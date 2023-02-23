@@ -5,7 +5,7 @@ type Request = {
   userId: string;
 };
 @Injectable()
-export class RefreshTokenUseCase {
+export class RefreshToken {
   constructor(
     private readonly authService: AuthService,
     private readonly userRepository: UserRepository,

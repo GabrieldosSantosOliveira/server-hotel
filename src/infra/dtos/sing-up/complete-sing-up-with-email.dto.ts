@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, IsDateString } from 'class-validator';
 
-export class CompleteSingUpWithEmailDto {
+export class CompleteSingUpWithEmailBodyDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;

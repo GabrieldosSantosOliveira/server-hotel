@@ -6,7 +6,7 @@ import {
   Matches,
 } from 'class-validator';
 
-export class ResetPasswordDto {
+export class ResetPasswordBodyDto {
   @IsNotEmpty()
   @Length(6)
   token: string;

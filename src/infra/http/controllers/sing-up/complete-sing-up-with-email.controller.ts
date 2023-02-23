@@ -1,6 +1,6 @@
 import { CompleteSingUpWithEmail } from '@application/use-cases/sign-up/complete-sing-up-with-email';
 import { AuthService } from '@auth/auth.service';
-import { CompleteSingUpWithEmailDto } from '@infra/dtos/SingUp/complete-sing-up-with-email';
+import { CompleteSingUpWithEmailBodyDto } from '@infra/dtos/sing-up/complete-sing-up-with-email.dto';
 import { Controller, Post, Body } from '@nestjs/common';
 
 @Controller('auth')
@@ -11,9 +11,9 @@ export class CompleteSingUpWithEmailController {
   ) {}
 
   @Post('complete-sing-up-with-email')
-  async validateEmail(
+  async execute(
     @Body()
-    { email, familyName, givenName, birthDate }: CompleteSingUpWithEmailDto,
+    { email, familyName, givenName, birthDate }: CompleteSingUpWithEmailBodyDto,
   ) {
     const user = await this.completeSingUpWithEmail.execute({
       email,

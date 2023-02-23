@@ -4,7 +4,7 @@ type RequestGetProfileUserUseCase = {
   userId: string;
 };
 @Injectable()
-export class GetProfileUserUseCase {
+export class GetProfileUser {
   constructor(private readonly userRepository: UserRepository) {}
   async execute({ userId }: RequestGetProfileUserUseCase) {
     return await this.userRepository.findById(userId);

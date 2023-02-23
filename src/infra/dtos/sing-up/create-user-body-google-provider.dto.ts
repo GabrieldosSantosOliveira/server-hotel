@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-export class CreateUserBodyGoogleProvider {
+export class CreateUserGoogleProviderBodyDto {
   @IsNotEmpty()
   access_token: string;
 }
