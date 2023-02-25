@@ -17,7 +17,6 @@ export class UserViewModel {
       appleId: user.appleId,
       updatedAt: user.updatedAt,
       gender: user.gender,
-      isCompleteRegister: user.isCompleteRegister,
     };
   }
 }
