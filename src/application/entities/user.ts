@@ -24,7 +24,7 @@ export interface UserProps {
 }
 export interface PropsConstructor
   extends Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'> {
-  id?: null;
+  id?: string | null;
   createdAt?: Date | null;
   updatedAt?: Date | null;
 }
