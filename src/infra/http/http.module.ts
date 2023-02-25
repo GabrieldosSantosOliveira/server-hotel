@@ -1,4 +1,5 @@
 import { IMailProvider } from '@application/repositories/mail-repository';
+import { StorageImageRepository } from '@application/repositories/storage-image-repository';
 import { ForgotPassword } from '@application/use-cases/auth/forgot-password';
 import { RefreshToken } from '@application/use-cases/auth/refresh-token';
 import { ResetPassword } from '@application/use-cases/auth/reset-password';
@@ -7,9 +8,11 @@ import { CompleteSingUpWithEmail } from '@application/use-cases/sign-up/complete
 import { EmailUserSingUp } from '@application/use-cases/sign-up/email-user-sing-up';
 import { GoogleUserSingUp } from '@application/use-cases/sign-up/google-user-sing-up';
 import { SingInWithEmailAndPassword } from '@application/use-cases/sing-in/sing-in-with-email-and-password-use-case';
+import { UploadImageStill } from '@application/use-cases/still/upload-image-still';
 import { GetProfileUser } from '@application/use-cases/user/get-profile-user-use-case';
 import { AuthModule } from '@auth/auth.module';
 import { NodeMailerProvider } from '@infra/implementations/mail/nodemalier-provider';
+import { StorageImageProvider } from '@infra/implementations/storage-image/storage-image-provider';
 import { HttpModule as HttpModuleAxios } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 
@@ -22,6 +25,7 @@ import { SingUpWithEmailAndPasswordController } from './controllers/sing-in/sing
 import { CompleteSingUpWithEmailController } from './controllers/sing-up/complete-sing-up-with-email.controller';
 import { EmailSingUpController } from './controllers/sing-up/email-sing-up.controller';
 import { GoogleSingUpController } from './controllers/sing-up/google-sing-up.controller';
+import { UploadImageStillController } from './controllers/still/upload-image-still.controller';
 import { GetProfileUserController } from './controllers/user/get-profile-user.controller';
 
 @Module({
@@ -36,6 +40,7 @@ import { GetProfileUserController } from './controllers/user/get-profile-user.co
     SingUpWithEmailAndPasswordController,
     ForgotPasswordController,
     ResetPasswordController,
+    UploadImageStillController,
   ],
   providers: [
     GoogleUserSingUp,
@@ -63,6 +68,11 @@ import { GetProfileUserController } from './controllers/user/get-profile-user.co
     SingInWithEmailAndPassword,
     ForgotPassword,
     ResetPassword,
+    {
+      provide: StorageImageRepository,
+      useClass: StorageImageProvider,
+    },
+    UploadImageStill,
   ],
   exports: [],
 })
