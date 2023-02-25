@@ -8,7 +8,7 @@ import { PrismaService } from './service.service';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
   async findById(id: string): Promise<User> {
     const raw = await this.prismaService.user.findUnique({
       where: {
