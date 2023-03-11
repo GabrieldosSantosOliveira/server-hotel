@@ -1,12 +1,8 @@
-export type Response = {
-  url: string;
-  key: string;
-  fileName: string;
-};
-export type Request = {
+import { Image } from '@application/entities/image';
+export type RequestFileSave = {
   buffer: Buffer;
   fileName: string;
 };
 export abstract class StorageImageRepository {
-  abstract upload(file: Request): Promise<Response>;
+  abstract upload(file: RequestFileSave): Promise<Image>;
 }

@@ -1,15 +1,14 @@
+import { Image } from '@application/entities/image';
 import {
-  Request,
-  Response,
+  RequestFileSave,
   StorageImageRepository,
 } from '@application/repositories/storage-image-repository';
 import { Injectable } from '@nestjs/common';
 import { S3 } from 'aws-sdk';
 import { randomUUID } from 'crypto';
-
 @Injectable()
 export class StorageImageProvider implements StorageImageRepository {
-  async upload({ buffer, fileName }: Request): Promise<Response> {
+  async upload({ buffer, fileName }: RequestFileSave): Promise<Image> {
     const s3 = new S3();
     const uploadResult = await s3
       .upload({
@@ -18,10 +17,9 @@ export class StorageImageProvider implements StorageImageRepository {
         Bucket: process.env.AWS_BUCKET_NAME,
       })
       .promise();
-    return {
-      fileName,
+    return new Image({
       key: uploadResult.Key,
       url: uploadResult.Location,
-    };
+    });
   }
 }

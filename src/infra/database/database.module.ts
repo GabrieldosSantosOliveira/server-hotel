@@ -1,10 +1,12 @@
-import { FacilitieRepository } from '@application/repositories/facilitie-repository';
+import { FacilityRepository } from '@application/repositories/facility-repository';
 import { ImageRepository } from '@application/repositories/image-repository';
+import { StillRepository } from '@application/repositories/still-repository';
 import { UserRepository } from '@application/repositories/user-repository';
 import { Module } from '@nestjs/common';
 
-import { PrismaFacilitieRepository } from './prisma/prisma-facilitie-repository';
+import { PrismaFacilityRepository } from './prisma/prisma-facility-repository';
 import { PrismaImageRepository } from './prisma/prisma-image-repository';
+import { PrismaStillRepository } from './prisma/prisma-still-repository';
 import { PrismaUserRepository } from './prisma/prisma-user-reporitory';
 import { PrismaService } from './prisma/service.service';
 
@@ -20,10 +22,19 @@ import { PrismaService } from './prisma/service.service';
       useClass: PrismaImageRepository,
     },
     {
-      provide: FacilitieRepository,
-      useClass: PrismaFacilitieRepository,
+      provide: FacilityRepository,
+      useClass: PrismaFacilityRepository,
+    },
+    {
+      provide: StillRepository,
+      useClass: PrismaStillRepository,
     },
   ],
-  exports: [UserRepository, ImageRepository, FacilitieRepository],
+  exports: [
+    UserRepository,
+    ImageRepository,
+    FacilityRepository,
+    StillRepository,
+  ],
 })
 export class DatabaseModule {}

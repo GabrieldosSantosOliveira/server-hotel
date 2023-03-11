@@ -15,6 +15,7 @@ export class PrismaUserRepository implements UserRepository {
         id,
       },
     });
+    if (!raw) return null;
     return PrismaUserMapper.toDomain(raw);
   }
   async save(data: User): Promise<void> {

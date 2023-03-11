@@ -12,7 +12,7 @@ type PropsConstructor = {
   createdAt?: Date | null;
   updatedAt?: Date | null;
 };
-export class Facilitie {
+export class Facility {
   private props: Props;
   constructor({ createdAt, id, updatedAt, ...rest }: PropsConstructor) {
     this.props = {

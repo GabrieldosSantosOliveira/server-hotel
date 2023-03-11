@@ -1,4 +1,5 @@
-import { Image as RawImage } from '@prisma/client';
+import { Image } from '@application/entities/image';
 export abstract class ImageRepository {
-  abstract create(image: RawImage): Promise<RawImage>;
+  abstract create(image: Image): Promise<void>;
+  abstract createMany(images: Image[]): Promise<void>;
 }

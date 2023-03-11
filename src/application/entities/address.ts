@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 
-interface Props {
+export interface IAddressProps {
   id: string;
   numberOfStill: string;
   street: string;
@@ -15,14 +15,17 @@ interface Props {
   updatedAt: Date;
 }
 interface PropsConstructor
-  extends Omit<Props, 'id' | 'referencePoint' | 'createdAt' | 'updatedAt'> {
+  extends Omit<
+    IAddressProps,
+    'id' | 'referencePoint' | 'createdAt' | 'updatedAt'
+  > {
   id?: string | null;
   referencePoint?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 export class Address {
-  private props: Props;
+  private props: IAddressProps;
   constructor({ id, createdAt, updatedAt, ...rest }: PropsConstructor) {
     this.props = {
       id: id || randomUUID(),

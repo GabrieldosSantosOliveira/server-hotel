@@ -1,32 +1,37 @@
 import { randomUUID } from 'crypto';
 
 import { Address } from './address';
-import { Facilitie } from './Facilitie';
+import { DescriptionStill } from './description-still';
+import { Facility } from './facility';
 import { Image } from './Image';
+import { TypeStill } from './TypeStill';
 import { User } from './user';
 
-interface Props {
+export interface IStillProps {
   id: string;
   title: string;
   price: number;
-  type: string;
-  size: number;
+  type: TypeStill;
+  sizePerMeter: number;
   address: Address;
   owner: User;
-  facilities: Facilitie;
-  image?: Image;
+  facilities: Facility[];
+  description: DescriptionStill;
+  bedNumber: number;
+  bathroomNumber: number;
+  images: Image[];
   createdAt: Date;
   updatedAt: Date;
 }
 interface PropsConstructor
-  extends Omit<Props, 'id' | 'createdAt' | 'updatedAt'> {
+  extends Omit<IStillProps, 'id' | 'createdAt' | 'updatedAt'> {
   id?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export class Still {
-  private props: Props;
+  private props: IStillProps;
   constructor({ id, createdAt, updatedAt, ...rest }: PropsConstructor) {
     this.props = {
       id: id || randomUUID(),
@@ -55,14 +60,14 @@ export class Still {
   public get type() {
     return this.props.type;
   }
-  public set type(type: string) {
+  public set type(type: TypeStill) {
     this.props.type = type;
   }
-  public get size() {
-    return this.props.size;
+  public get sizePerMeter() {
+    return this.props.sizePerMeter;
   }
-  public set size(size: number) {
-    this.props.size = size;
+  public set sizePerMeter(sizePerMeter: number) {
+    this.props.sizePerMeter = sizePerMeter;
   }
   public get address() {
     return this.props.address;
@@ -73,7 +78,7 @@ export class Still {
   public get facilities() {
     return this.props.facilities;
   }
-  public set facilities(facilities: Facilitie) {
+  public set facilities(facilities: Facility[]) {
     this.props.facilities = facilities;
   }
   public get owner() {
@@ -85,13 +90,31 @@ export class Still {
   public get createdAt() {
     return this.props.createdAt;
   }
-  public set image(image: Image) {
-    this.props.image = image;
+  public set images(images: Image[]) {
+    this.props.images = images;
   }
-  public get image(): Image | null | undefined {
-    return this.props.image;
+  public get images(): Image[] | null | undefined {
+    return this.props.images;
   }
   public get updatedAt() {
     return this.props.updatedAt;
+  }
+  public get description() {
+    return this.props.description;
+  }
+  public set description(description: DescriptionStill) {
+    this.props.description = description;
+  }
+  public get bedNumber() {
+    return this.props.bedNumber;
+  }
+  public set bedNumber(bedNumber: number) {
+    this.props.bedNumber = bedNumber;
+  }
+  public get bathroomNumber() {
+    return this.props.bathroomNumber;
+  }
+  public set bathroomNumber(bathroomNumber: number) {
+    this.props.bathroomNumber = bathroomNumber;
   }
 }

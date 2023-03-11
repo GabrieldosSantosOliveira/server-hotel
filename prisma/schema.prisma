@@ -61,39 +61,42 @@ model Address {
   Still          Still?   @relation(fields: [stillId], references: [id])
 }
 
-model Facilitie {
-  id              String            @id
-  name            String            @unique
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  StillFacilities StillFacilities[]
+model Facility {
+  id              String          @id
+  name            String          @unique
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  StillFacilities StillFacility[]
 }
 
-model StillFacilities {
-  id          String    @id
-  stillId     String
-  Still       Still     @relation(fields: [stillId], references: [id])
-  facilitieId String
-  Facilitie   Facilitie @relation(fields: [facilitieId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+model StillFacility {
+  id         String   @id
+  stillId    String
+  Still      Still    @relation(fields: [stillId], references: [id])
+  facilityId String
+  Facilitie  Facility @relation(fields: [facilityId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Still {
-  id              String            @id
+  id              String          @id
   title           String
   price           Int
   type            String
-  size            Int
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  sizePerMeter    Int
+  bedNumber       Int
+  bathroomNumber  Int
+  description     String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
   ownerId         String
-  Owner           User              @relation(fields: [ownerId], references: [id])
+  Owner           User            @relation(fields: [ownerId], references: [id])
   Image           Image[]
   reservation     Reservation[]
   Favorites       Favorites[]
   Address         Address[]
-  StillFacilities StillFacilities[]
+  StillFacilities StillFacility[]
 }
 
 model Image {
